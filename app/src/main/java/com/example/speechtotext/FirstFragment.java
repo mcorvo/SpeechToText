@@ -26,6 +26,7 @@ public class FirstFragment extends Fragment {
     private ImageView micButton;
     private SpeechRecognizer speechRecognizer;
     private RecognitionListener recoListener;
+    ArrayList<String> data;
 
     @Override
     public View onCreateView(
@@ -78,7 +79,7 @@ public class FirstFragment extends Fragment {
 
             @Override
             public void onResults(Bundle results) {
-                ArrayList<String> data = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+                data = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
                 editText.setText(data.get(0));
             }
 
