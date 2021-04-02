@@ -25,7 +25,6 @@ public class FirstFragment extends Fragment {
     private EditText editText;
     private ImageView micButton;
     private SpeechRecognizer speechRecognizer;
-    private RecognitionListener recoListener;
     ArrayList<String> data;
 
     @Override
@@ -45,7 +44,7 @@ public class FirstFragment extends Fragment {
         micButton = view.findViewById(R.id.button);
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(getContext());
 
-        recoListener = new RecognitionListener() {
+        RecognitionListener recoListener = new RecognitionListener() {
             @Override
             public void onReadyForSpeech(Bundle params) {
 
@@ -99,6 +98,9 @@ public class FirstFragment extends Fragment {
         speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
 
         speechRecognizer.setRecognitionListener(recoListener);
+
+        StringParser parser = new StringParser(data);
+
 
         micButton.setOnTouchListener((view1, motionEvent) -> {
             if (motionEvent.getAction() == MotionEvent.ACTION_UP){
